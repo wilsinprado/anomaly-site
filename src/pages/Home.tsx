@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getGuildProgress } from '../services/raiderio'
 import logo from '../assets/guild-logo.jpg'
+import { o } from 'react-router/dist/development/index-react-server-client-C4tCIird'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -26,7 +27,6 @@ export default function Home() {
         return () => { alive = false }
     }, [])
 
-    console.log(progress)
 
   return (
     <div>
@@ -104,7 +104,7 @@ export default function Home() {
           <Card>
             <Title level={4} style={{ marginTop: 0 }}>Progress</Title>
             <Paragraph style={{ marginBottom: 6 }}>
-              <Text strong>0/6 Mythic</Text> <Text type="secondary">Chaos tower</Text>
+              <Text strong>{progress.raid_progression.summary}</Text> <Text type="secondary">Manaforge Omega</Text>
             </Paragraph>
             {/* <Text type="secondary">
               Coloque aqui o progress atual do tier. Depois a gente automatiza via API.
