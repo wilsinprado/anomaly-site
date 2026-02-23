@@ -104,7 +104,7 @@ export default function Home() {
           <Card>
             <Title level={4} style={{ marginTop: 0 }}>Progress</Title>
             <Paragraph style={{ marginBottom: 6 }}>
-              <Text strong>{progress.raid_progression.summary}</Text> <Text type="secondary">Manaforge Omega</Text>
+              <Text strong>{progress.data.raid_progression.summary}</Text> <Text type="secondary">Manaforge Omega</Text>
             </Paragraph>
             {/* <Text type="secondary">
               Coloque aqui o progress atual do tier. Depois a gente automatiza via API.
