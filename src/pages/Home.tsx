@@ -12,7 +12,7 @@ type ProgressState =
   | { status: 'error' }
   | { status: 'success'; data: any }
 
-const RAID_SLUG = 'latest' // vamos ajustar abaixo
+// const RAID_SLUG = 'latest' // vamos ajustar abaixo
 
 export default function Home() {
   const navigate = useNavigate()
