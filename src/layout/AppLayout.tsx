@@ -7,6 +7,7 @@ const { Header, Content, Footer } = Layout
 const { Title, Text } = Typography
 
 const items: MenuProps['items'] = [
+    { key: '/', label: <Link to="/">Home</Link> },
     { key: '/apply', label: <Link to="/apply">Apply</Link> },
     { key: '/roster', label: <Link to="/roster">Roster</Link> },
     { key: '/horarios', label: <Link to="/horarios">Horários</Link> },
@@ -16,8 +17,8 @@ const items: MenuProps['items'] = [
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation()
   const selectedKey = items?.some(i => (i as any)?.key === location.pathname)
-    ? location.pathname
-    : '/apply'
+  ? location.pathname
+  : '/'
 
   return (
     <Layout style={{ minHeight: '100vh' }}>

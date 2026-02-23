@@ -36,7 +36,7 @@ export async function handler(event) {
     }
   
     const embed = {
-      title: '📩 Nova Apply — Anomaly',
+      title: '📩 Novo Apply — Anomaly',
       description: `**${body.characterName}** — ${body.class} (${body.role})`,
       color: 0x7B2CFF,
       fields: [
