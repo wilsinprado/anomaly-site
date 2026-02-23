@@ -4,14 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getGuildProgress } from '../services/raiderio'
 import logo from '../assets/guild-logo.jpg'
-import { o } from 'react-router/dist/development/index-react-server-client-C4tCIird'
+import { ProgressTypes } from 'antd/es/progress/progress'
 
 const { Title, Paragraph, Text } = Typography
 
-type ProgressState =
-  | { status: 'loading' }
-  | { status: 'error' }
-  | { status: 'success'; data: any }
+
+type ProgressState = any
 
 // const RAID_SLUG = 'latest' // vamos ajustar abaixo
 
@@ -23,9 +21,10 @@ export default function Home() {
         let alive = true
         getGuildProgress()
             .then((data) => alive && setProgress({ status: 'success', data }))
-            .catch(() => alive && setProgress({ status: 'error' }))
+            .catch(() => alive && setProgress({ status: 'error', data: 'Erro' }))
         return () => { alive = false }
     }, [])
+    const raid = progress.data?.raid_progression?.['manaforge-omega']
 
 
   return (
@@ -104,11 +103,13 @@ export default function Home() {
           <Card>
             <Title level={4} style={{ marginTop: 0 }}>Progress</Title>
             <Paragraph style={{ marginBottom: 6 }}>
-              <Text strong>{progress.data.raid_progression.summary}</Text> <Text type="secondary">Manaforge Omega</Text>
+                {raid?.summary && (
+                    <>
+                        <Text strong>{raid.summary}</Text>{' '}
+                        <Text type="secondary">Manaforge Omega</Text>
+                    </>
+                )}
             </Paragraph>
-            {/* <Text type="secondary">
-              Coloque aqui o progress atual do tier. Depois a gente automatiza via API.
-            </Text> */}
           </Card>
         </Col>
 
