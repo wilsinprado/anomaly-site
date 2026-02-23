@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getGuildProgress } from '../services/raiderio'
 import logo from '../assets/guild-logo.jpg'
-import { ProgressTypes } from 'antd/es/progress/progress'
 
 const { Title, Paragraph, Text } = Typography
 
