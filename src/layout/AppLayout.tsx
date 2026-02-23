@@ -1,10 +1,11 @@
-import { Layout, Menu, Space, Typography } from 'antd'
+import { Layout, Menu, Space, Typography, Grid } from 'antd'
 import type { MenuProps } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/guild-logo.jpg'
 
 const { Header, Content, Footer } = Layout
 const { Title, Text } = Typography
+const { useBreakpoint } = Grid
 
 const items: MenuProps['items'] = [
     { key: '/', label: <Link to="/">Home</Link> },
@@ -16,6 +17,8 @@ const items: MenuProps['items'] = [
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation()
+  const screens = useBreakpoint()
+  const isMobile = !screens.md
   const selectedKey = items?.some(i => (i as any)?.key === location.pathname)
   ? location.pathname
   : '/'
@@ -38,17 +41,17 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           <img
             src={logo}
             alt="Guild Logo"
-            width={40}
-            height={40}
+            width={60}
+            height={60}
             className="brand-glow"
-            style={{ borderRadius: 10, objectFit: 'cover' }}
+            style={{ borderRadius: 10, objectFit: 'cover', marginTop: '24px' }}
           />
-          <div style={{ lineHeight: 1.1 }}>
-            <Title level={4} style={{ margin: 0 }}>
-              Guild
-            </Title>
-            <Text type="secondary">World of Warcraft</Text>
-          </div>
+          {!isMobile && (
+                <div style={{ lineHeight: 1.1 }}>
+                    <Title level={4} style={{ margin: 0 }}>Anomaly</Title>
+                    <Text type="secondary">Mythic Raid • Cross-faction</Text>
+                </div>
+            )}
         </Space>
 
         <div style={{ flex: 1 }} />
