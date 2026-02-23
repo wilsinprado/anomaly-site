@@ -1,11 +1,10 @@
 import { Button, Card, Col, Row, Space, Tag, Typography } from 'antd'
-import { ArrowRightOutlined, DiscordOutlined } from '@ant-design/icons'
+import { ArrowRightOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/guild-logo.jpg'
 
 const { Title, Paragraph, Text } = Typography
 
-const DISCORD_INVITE = import.meta.env.VITE_DISCORD_INVITE
 
 export default function Home() {
   const navigate = useNavigate()
