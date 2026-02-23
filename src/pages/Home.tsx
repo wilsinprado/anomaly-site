@@ -1,13 +1,32 @@
 import { Button, Card, Col, Row, Space, Tag, Typography } from 'antd'
 import { ArrowRightOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { getGuildProgress } from '../services/raiderio'
 import logo from '../assets/guild-logo.jpg'
 
 const { Title, Paragraph, Text } = Typography
 
+type ProgressState =
+  | { status: 'loading' }
+  | { status: 'error' }
+  | { status: 'success'; data: any }
+
+const RAID_SLUG = 'latest' // vamos ajustar abaixo
 
 export default function Home() {
   const navigate = useNavigate()
+  const [progress, setProgress] = useState<ProgressState>({ status: 'loading' })
+
+    useEffect(() => {
+        let alive = true
+        getGuildProgress()
+            .then((data) => alive && setProgress({ status: 'success', data }))
+            .catch(() => alive && setProgress({ status: 'error' }))
+        return () => { alive = false }
+    }, [])
+
+    console.log(progress)
 
   return (
     <div>
