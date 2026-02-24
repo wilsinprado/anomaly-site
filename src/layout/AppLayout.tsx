@@ -49,7 +49,6 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           {!isMobile && (
                 <div style={{ lineHeight: 1.1 }}>
                     <Title level={4} style={{ margin: 0 }}>Anomaly</Title>
-                    <Text type="secondary">Mythic Raid • Cross-faction</Text>
                 </div>
             )}
         </Space>
