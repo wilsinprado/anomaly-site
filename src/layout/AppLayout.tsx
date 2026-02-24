@@ -1,10 +1,10 @@
-import { Layout, Menu, Space, Typography, Grid } from 'antd'
-import type { MenuProps } from 'antd'
+import { Grid, Layout, Menu, Space, Typography } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/guild-logo.jpg'
+import type { MenuProps } from 'antd'
 
 const { Header, Content, Footer } = Layout
-const { Title, Text } = Typography
+const { Title } = Typography
 const { useBreakpoint } = Grid
 
 const items: MenuProps['items'] = [
