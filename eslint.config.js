@@ -1,23 +1,42 @@
 import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import react from 'eslint-plugin-react'
+import hooks from 'eslint-plugin-react-hooks'
+import importPlugin from 'eslint-plugin-import'
+import prettier from 'eslint-config-prettier'
 
-export default defineConfig([
-  globalIgnores(['dist']),
+export default [
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+    files: ['**/*.{ts,tsx,js,jsx}'],
+    plugins: {
+      react,
+      'react-hooks': hooks,
+      import: importPlugin
     },
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: { jsx: true }
+      }
+    },
+    settings: {
+      react: { version: 'detect' },
+      'import/resolver': {
+        typescript: {
+          project: ['./tsconfig.app.json']
+        }
+      }
+    },
+    rules: {
+      ...hooks.configs.recommended.rules,
+
+      // evita falsos positivos de bundler/vite
+      'import/no-unresolved': 'off',
+
+      // deixa o TS cuidar
+      'no-undef': 'off'
+    }
   },
-])
+  prettier
+]
