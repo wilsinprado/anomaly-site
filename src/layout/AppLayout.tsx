@@ -73,7 +73,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       </Content>
 
       <Footer style={{ textAlign: 'center', background: 'transparent', color: 'rgba(255,255,255,0.45)' }}>
-        © {new Date().getFullYear()} Guild — Anomalia
+        © {new Date().getFullYear()} Guild — Anomaly
       </Footer>
     </Layout>
   )
